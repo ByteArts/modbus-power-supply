@@ -1,3 +1,4 @@
+# filepath: ps_console/src/ps_console.py
 #!/usr/bin/env python3
 """
 Interactive console program for controlling Hanmatek HM310T power supply.
@@ -480,8 +481,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Interactive console for Hanmatek HM310T power supply control',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
+        epilog="""Examples:
   Windows:  python interactive_console.py COM3
   macOS:    python interactive_console.py /dev/ttyUSB0
   Linux:    python interactive_console.py /dev/ttyUSB0
@@ -493,6 +493,7 @@ Examples:
 
     parser.add_argument(
         'port',
+        nargs='?',
         help='Serial port (e.g., COM3 on Windows, /dev/ttyUSB0 on macOS/Linux)'
     )
     parser.add_argument(
@@ -509,6 +510,22 @@ Examples:
     )
 
     args = parser.parse_args()
+
+    # If port was not provided on the command line, prompt the user for it
+    if not args.port:
+        try:
+            user_port = input("Enter serial port (e.g., COM3 or /dev/ttyUSB0): ").strip()
+        except EOFError:
+            print("Error: No port provided.")
+            parser.print_help()
+            return 2
+
+        if not user_port:
+            print("Error: No port provided.")
+            parser.print_help()
+            return 2
+
+        args.port = user_port
 
     # Create and run console
     console = PowerSupplyConsole(
