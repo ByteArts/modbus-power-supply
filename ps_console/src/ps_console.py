@@ -308,7 +308,7 @@ Available commands (short/long):
             if sys.platform != 'win32':
                 import tty
                 import termios
-                old_settings = termios.tcgetattr(sys.stdin)
+                old_settings = termios.tcgetattr(sys.stdin.fileno())
 
                 try:
                     tty.setcbreak(sys.stdin.fileno())
@@ -342,7 +342,7 @@ Available commands (short/long):
                     print(f"\nRamping complete! Final voltage: {end_voltage}V" + " " * 20)
 
                 finally:
-                    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+                    termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old_settings)
 
             else:
                 # Windows implementation
