@@ -317,11 +317,7 @@ Available commands (short/long):
                     for step in range(num_steps + 1):
                         # Check for keypress to stop
                         if self._check_keypress():
-                            if sys.platform == 'win32':
-                                import msvcrt
-                                msvcrt.getch()  # Clear the key buffer
-                            else:
-                                sys.stdin.read(1)  # Clear the key buffer
+                            sys.stdin.read(1)  # Clear the key buffer on Unix-like systems
                             print("\nRamping stopped by user")
                             break
 
