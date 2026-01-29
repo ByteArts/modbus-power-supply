@@ -1,5 +1,5 @@
-# filepath: ps_console/src/ps_console.py
 #!/usr/bin/env python3
+# filepath: ps_console/src/ps_console.py
 """
 Interactive console program for controlling Hanmatek HM310T power supply.
 Cross-platform compatible (Windows and macOS).
