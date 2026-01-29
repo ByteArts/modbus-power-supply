@@ -482,12 +482,12 @@ def main():
         description='Interactive console for Hanmatek HM310T power supply control',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""Examples:
-  Windows:  python interactive_console.py COM3
-  macOS:    python interactive_console.py /dev/ttyUSB0
-  Linux:    python interactive_console.py /dev/ttyUSB0
+  Windows:  python ps_console.py COM3
+  macOS:    python ps_console.py /dev/ttyUSB0
+  Linux:    python ps_console.py /dev/ttyUSB0
 
   With custom baudrate:
-            python interactive_console.py COM3 --baudrate 115200
+            python ps_console.py COM3 --baudrate 115200
         """
     )
 
